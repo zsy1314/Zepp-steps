@@ -1,0 +1,5 @@
+pytz
+pycryptodome
+requests
+schedule
+colorama
