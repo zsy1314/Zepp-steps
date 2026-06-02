@@ -2,7 +2,7 @@ name: Daily Zepp Steps  # 任务名称
 
 on:
   schedule:
-    - cron: '0 16 * * *'  # 每天 UTC 16:00 运行，对应北京时间 00:00
+    - cron: '0 21 * * *'  # 每天 UTC 16:00 运行，对应北京时间 00:00
   workflow_dispatch:     # 允许手动点击运行
 
 jobs:
