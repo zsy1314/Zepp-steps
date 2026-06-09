@@ -38,6 +38,10 @@ jobs:
         env:
           PAT: ${{ secrets.PAT }}
         run: |
+          if [ -z "$PAT" ]; then
+            echo "未配置 PAT Secret，跳过日志保存"
+            exit 0
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           REPO_URL="https://x-access-token:${PAT}@github.com/${{ github.repository }}.git"
