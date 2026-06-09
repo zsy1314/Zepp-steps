@@ -33,25 +33,21 @@ jobs:
           AES_KEY: ${{ secrets.AES_KEY }}
         run: python main.py
 
-      # 步骤5：随机化下次执行的分钟（避免每次都在同一分钟提交步数）
-      - name: Randomize cron minute
+      # 步骤5：保存执行记录和加密 token 到仓库（不修改 workflow 文件，避免 fork 仓库权限问题）
+      - name: Save logs and tokens
         env:
           PAT: ${{ secrets.PAT }}
         run: |
-          # 如果没有配置 PAT，跳过 cron 随机化
-          if [ -z "$PAT" ]; then
-            echo "未配置 PAT Secret，跳过 cron 随机化"
-            exit 0
-          fi
-          # 配置 git 认证（使用 PAT 才能推送回仓库）
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           REPO_URL="https://x-access-token:${PAT}@github.com/${{ github.repository }}.git"
           git remote set-url origin "$REPO_URL"
-          # 执行 cron 随机化脚本
-          source ./cron_convert.sh
-          persist_execute_log "schedule" ""
-          # 提交并推送变更
-          git add cron_change_time .github/workflows/main.yml encrypted_tokens.data
-          git diff --cached --quiet || git commit -m "chore: update cron minute [skip ci]"
+          # 记录本次执行时间
+          echo "trigger by: schedule" > cron_change_time
+          echo "exec time (UTC): $(TZ=UTC date '+%y-%m-%d %H:%M:%S')" >> cron_change_time
+          echo "exec time (北京): $(TZ=Asia/Shanghai date '+%y-%m-%d %H:%M:%S')" >> cron_change_time
+          echo "cron: 0 21 * * * (UTC) / 05:00 北京时间" >> cron_change_time
+          # 提交并推送（不包含 workflow 文件，避免 fine-grained token 权限报错）
+          git add cron_change_time encrypted_tokens.data
+          git diff --cached --quiet || git commit -m "chore: update execution log [skip ci]"
           git push origin HEAD:${{ github.ref_name }}
