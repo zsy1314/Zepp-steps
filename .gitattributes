@@ -1,2 +1,8 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Shell scripts MUST use LF (Linux line endings) — GitHub Actions runs on Ubuntu
+*.sh text eol=lf
+
+# Python scripts also prefer LF for consistency
+*.py text eol=lf
