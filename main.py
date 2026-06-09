@@ -169,7 +169,7 @@ class MiMotionRunner:
         user_token_info["login_token_time"] = get_time()
         user_token_info["app_token_time"] = get_time()
         if self.device_id is None:
-            self.device_id = uuid.uuid4()
+            self.device_id = str(uuid.uuid4())
         user_token_info["device_id"] = self.device_id
         user_tokens[self.user] = user_token_info
         return app_token
