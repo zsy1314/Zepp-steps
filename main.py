@@ -119,33 +119,28 @@ class MiMotionRunner:
             if self.device_id is None:
                 self.device_id = str(uuid.uuid4())
                 user_token_info["device_id"] = self.device_id
-            ok, msg = zeppHelper.check_app_token(app_token)
-            if ok:
-                self.log_str += "使用加密保存的app_token\n"
-                return app_token
+            # 不信任缓存的app_token，每次强制刷新
+            # 缓存的token可能check_app_token通过（有读权限）但实际已无法写数据
+            self.log_str += "刷新app_token\n"
+            new_app_token, msg = zeppHelper.grant_app_token(login_token)
+            if new_app_token is not None:
+                user_token_info["app_token"] = new_app_token
+                user_token_info["app_token_time"] = get_time()
+                return new_app_token
+            # app_token刷新失败，尝试刷新login_token
+            self.log_str += f"login_token可能失效，重新获取 last grant time: {user_token_info.get('login_token_time')}\n"
+            login_token, new_app_token, user_id, msg = zeppHelper.grant_login_tokens(access_token, self.device_id,
+                                                                                     self.is_phone)
+            if login_token is not None:
+                user_token_info["login_token"] = login_token
+                user_token_info["app_token"] = new_app_token
+                user_token_info["user_id"] = user_id
+                user_token_info["login_token_time"] = get_time()
+                user_token_info["app_token_time"] = get_time()
+                self.user_id = user_id
+                return new_app_token
             else:
-                self.log_str += f"app_token失效 重新获取 last grant time: {user_token_info.get('app_token_time')}\n"
-                # 检查login_token是否可用
-                app_token, msg = zeppHelper.grant_app_token(login_token)
-                if app_token is None:
-                    self.log_str += f"login_token 失效 重新获取 last grant time: {user_token_info.get('login_token_time')}\n"
-                    login_token, app_token, user_id, msg = zeppHelper.grant_login_tokens(access_token, self.device_id,
-                                                                                         self.is_phone)
-                    if login_token is None:
-                        self.log_str += f"access_token 已失效：{msg} last grant time:{user_token_info.get('access_token_time')}\n"
-                    else:
-                        user_token_info["login_token"] = login_token
-                        user_token_info["app_token"] = app_token
-                        user_token_info["user_id"] = user_id
-                        user_token_info["login_token_time"] = get_time()
-                        user_token_info["app_token_time"] = get_time()
-                        self.user_id = user_id
-                        return app_token
-                else:
-                    self.log_str += "重新获取app_token成功\n"
-                    user_token_info["app_token"] = app_token
-                    user_token_info["app_token_time"] = get_time()
-                    return app_token
+                self.log_str += f"access_token可能已失效：{msg} last grant time:{user_token_info.get('access_token_time')}\n"
 
         # access_token 失效 或者没有保存加密数据
         access_token, msg = zeppHelper.login_access_token(self.user, self.password)
