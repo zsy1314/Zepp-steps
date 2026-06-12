@@ -133,12 +133,20 @@ class MiMotionRunner:
                                                                                      self.is_phone)
             if login_token is not None:
                 user_token_info["login_token"] = login_token
-                user_token_info["app_token"] = new_app_token
                 user_token_info["user_id"] = user_id
                 user_token_info["login_token_time"] = get_time()
-                user_token_info["app_token_time"] = get_time()
                 self.user_id = user_id
-                return new_app_token
+                # 用新login_token再获取app_token，确保有写权限（grant_login_tokens返回的app_token可能仅有读权限）
+                fresh_app_token, msg2 = zeppHelper.grant_app_token(login_token)
+                if fresh_app_token is not None:
+                    user_token_info["app_token"] = fresh_app_token
+                    user_token_info["app_token_time"] = get_time()
+                    return fresh_app_token
+                else:
+                    self.log_str += f"grant_app_token失败：{msg2}，尝试用grant_login_tokens返回的app_token\n"
+                    user_token_info["app_token"] = new_app_token
+                    user_token_info["app_token_time"] = get_time()
+                    return new_app_token
             else:
                 self.log_str += f"access_token可能已失效：{msg} last grant time:{user_token_info.get('access_token_time')}\n"
 
@@ -157,17 +165,26 @@ class MiMotionRunner:
         user_token_info = dict()
         user_token_info["access_token"] = access_token
         user_token_info["login_token"] = login_token
-        user_token_info["app_token"] = app_token
         user_token_info["user_id"] = user_id
         # 记录token获取时间
         user_token_info["access_token_time"] = get_time()
         user_token_info["login_token_time"] = get_time()
-        user_token_info["app_token_time"] = get_time()
         if self.device_id is None:
             self.device_id = str(uuid.uuid4())
         user_token_info["device_id"] = self.device_id
-        user_tokens[self.user] = user_token_info
-        return app_token
+        # 用新login_token获取app_token，确保有写权限
+        fresh_app_token, msg2 = zeppHelper.grant_app_token(login_token)
+        if fresh_app_token is not None:
+            user_token_info["app_token"] = fresh_app_token
+            user_token_info["app_token_time"] = get_time()
+            user_tokens[self.user] = user_token_info
+            return fresh_app_token
+        else:
+            self.log_str += f"grant_app_token失败：{msg2}，尝试用grant_login_tokens返回的app_token\n"
+            user_token_info["app_token"] = app_token
+            user_token_info["app_token_time"] = get_time()
+            user_tokens[self.user] = user_token_info
+            return app_token
 
     # 主函数
     def login_and_post_step(self, min_step, max_step):

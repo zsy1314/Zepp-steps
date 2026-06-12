@@ -144,7 +144,7 @@ def grant_login_tokens(access_token, device_id, is_phone=False) -> (str | None, 
 
 # 获取app_token 用于提交数据变更
 def grant_app_token(login_token: str) -> (str | None, str | None):
-    url = f"https://account-cn.huami.com/v1/client/app_tokens?app_name=com.xiaomi.hm.health&dn=api-user.huami.com%2Capi-mifit.huami.com%2Capp-analytics.huami.com&login_token={login_token}"
+    url = f"https://account.huami.com/v1/client/app_tokens?app_name=com.xiaomi.hm.health&dn=api-user.huami.com%2Capi-mifit.huami.com%2Capp-analytics.huami.com&login_token={login_token}"
     headers = {'User-Agent': 'MiFit/5.3.0 (iPhone; iOS 14.7.1; Scale/3.00)'}
     resp = requests.get(url, headers=headers)
     if resp.status_code != 200:
