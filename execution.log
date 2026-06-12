@@ -1,0 +1,14 @@
+多账号执行间隔：5.0
+grant_app_token: {"error_code": "0108", "mutime_long": 0, "mutime": "1970-01-01 00:00"}
+[2026-06-12 10:02:46]
+[1/1]账号：120****.com
+刷新app_token
+login_token可能失效，重新获取 last grant time: 1781180898218
+已设置为随机步数范围(18000~25000) 随机值:22990
+修改步数（22990）[success]
+
+
+执行账号总数1，成功：1，失败：0
+未配置 PUSH_PLUS_TOKEN 跳过PUSHPLUS推送
+未配置 WECHAT_WEBHOOK_KEY 跳过微信推送
+未配置 TELEGRAM_BOT_TOKEN 或 TELEGRAM_CHAT_ID 跳过telegram推送
