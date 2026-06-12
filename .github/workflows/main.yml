@@ -33,7 +33,7 @@ jobs:
         env:
           CONFIG: ${{ secrets.CONFIG }}
           AES_KEY: ${{ secrets.AES_KEY }}
-        run: python main.py
+        run: python main.py 2>&1 | tee execution.log
 
       # 步骤5：保存执行记录和加密 token 到仓库（不修改 workflow 文件，避免 fork 仓库权限问题）
       - name: Save logs and tokens
@@ -54,6 +54,6 @@ jobs:
           echo "exec time (北京): $(TZ=Asia/Shanghai date '+%y-%m-%d %H:%M:%S')" >> cron_change_time
           echo "cron: 0 21 * * * (UTC) / 05:00 北京时间" >> cron_change_time
           # 提交并推送（不包含 workflow 文件，避免 fine-grained token 权限报错）
-          git add cron_change_time encrypted_tokens.data
+          git add cron_change_time encrypted_tokens.data execution.log
           git diff --cached --quiet || git commit -m "chore: update execution log [skip ci]"
           git push origin HEAD:${{ github.ref_name }}
