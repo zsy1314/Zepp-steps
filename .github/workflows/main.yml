@@ -1,9 +1,10 @@
 name: Daily Zepp Steps  # 任务名称
 
 on:
-  # 每天 UTC 21:00 运行，对应北京时间 05:00
+  # 每天 UTC 2:30 运行，对应北京时间 10:30
+  # 选择 10:30 是因为早上 5:00 步数过高会被 Zepp 服务器判定为异常数据而丢弃
   schedule:
-    - cron: '0 21 * * *'
+    - cron: '30 2 * * *'
   # 允许手动点击运行
   workflow_dispatch:
 
@@ -52,7 +53,7 @@ jobs:
           echo "trigger by: schedule" > cron_change_time
           echo "exec time (UTC): $(TZ=UTC date '+%y-%m-%d %H:%M:%S')" >> cron_change_time
           echo "exec time (北京): $(TZ=Asia/Shanghai date '+%y-%m-%d %H:%M:%S')" >> cron_change_time
-          echo "cron: 0 21 * * * (UTC) / 05:00 北京时间" >> cron_change_time
+          echo "cron: 30 2 * * * (UTC) / 10:30 北京时间" >> cron_change_time
           # 提交并推送（不包含 workflow 文件，避免 fine-grained token 权限报错）
           git add cron_change_time encrypted_tokens.data execution.log
           git diff --cached --quiet || git commit -m "chore: update execution log [skip ci]"
