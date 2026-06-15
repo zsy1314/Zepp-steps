@@ -1,4 +1,4 @@
 trigger by: schedule
-exec time (UTC): 26-06-15 07:07:20
-exec time (北京): 26-06-15 15:07:20
+exec time (UTC): 26-06-15 18:52:51
+exec time (北京): 26-06-16 02:52:51
 cron: 30 2 * * * (UTC) / 10:30 北京时间
