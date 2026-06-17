@@ -284,7 +284,7 @@ def post_fake_brand_data(step, app_token, userid):
 
     data_json = urllib.parse.quote(json_str, safe='')
 
-    url = f'https://api-mifit-cn.huami.com/v1/data/band_data.json?&t={t}&r={str(uuid.uuid4())}'
+    url = f'https://api-mifit.huami.com/v1/data/band_data.json?&t={t}&r={str(uuid.uuid4())}'
     head = {
         "apptoken": app_token,
         "Content-Type": "application/x-www-form-urlencoded"

@@ -21,16 +21,23 @@ def get_int_value_default(_config: dict, _key, default):
     return int(_config.get(_key))
 
 
-# 获取对应的最大和最小步数（去掉时间比例限制，保底 10000+）
+# 获取对应的最大和最小步数（根据当前时间调整，越晚步数越高）
 def get_min_max_by_time(hour=None, minute=None):
     min_step = get_int_value_default(config, 'MIN_STEP', 18000)
     max_step = get_int_value_default(config, 'MAX_STEP', 25000)
-    # 保底10000步，满足健走比赛需求
-    if min_step < 10000:
-        min_step = 10000
-    if max_step < min_step + 2000:
-        max_step = min_step + 2000
-    return min_step, max_step
+    # 计算当前时间占一天的比例：早上步数少，晚上步数多
+    time_bj = get_beijing_time()
+    hour = time_bj.hour
+    minute = time_bj.minute
+    time_rate = (hour * 60 + minute) / 1440.0
+    # 按时间比例缩放，但保底 10000（满足健走比赛需求）
+    adjusted_min = int(min_step * time_rate)
+    adjusted_max = int(max_step * time_rate)
+    if adjusted_min < 10000:
+        adjusted_min = 10000
+    if adjusted_max < adjusted_min + 2000:
+        adjusted_max = adjusted_min + 2000
+    return adjusted_min, adjusted_max
 
 
 # 虚拟ip地址
