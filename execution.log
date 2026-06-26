@@ -1,13 +1,21 @@
-密钥不正确或者加密内容损坏 放弃token
 多账号执行间隔：5.0
-grant_app_token: {"token_info": {"app_token": "ZQVBQFJyQktGHlp6QkpbRl5LRl5qek4uXAQABAAAAAFsRWaCClHIyAbQ0PcdHvbZYpAfSmdM11dYRU-KT5Jm3HU23FsifTudu5NpNYuLSDAgL4pB8kr7uMpIUwd8okOXjNPxswrbdJLVNqCahRZgY-7MV6PIkUJtiAoRkFVl7O5Ld7AHVRxcvBHIA1_kWdLYWwdD70KryvCxYCtgP7Und6NEGXpz4sqUmGHzsZsQ9qQ", "user_id": "1198737087", "app_ttl": 2592000}, "result": "ok", "domains": [{"cnames": ["api-user-cn3.zepp.com"], "host": "api-user.huami.com"}, {"cnames": ["api-mifit-cn3.zepp.com"], "host": "api-mifit.huami.com"}, {"cnames": ["app-analytics-cn3.zepp.com"], "host": "app-analytics.huami.com"}]}
-[2026-06-26 09:34:28]
-[1/1]账号：zsy****.com
-已设置为随机步数范围(11958~13958) 随机值:13646
-修改步数（13646）[success]
+grant_app_token: {"error_code": "0108", "mutime_long": 0, "mutime": "1970-01-01 00:00"}
+grant_app_token: {"token_info": {"app_token": "ZQVBQFJyQktGHlp6QkpbRl5LRl5qek4uXAQABAAAAANVKkrZ2-FOoI78lyu0dfbLthkReBpQeb7CIqV0SKYH60zkXie2lktOFSYSV-8r_Nx5w49x5npZcYRiQGWonCIbQuVW3ZGrqU4szYQ-gX2lE050i5Tw8dp5341qhe-dpwJoEBeggz0NH2g-AaMkoOu05pg2FIGUdkTREywgfY3psN_p00WyWk8B8NqMhCO-ypA", "user_id": "1198737087", "app_ttl": 2592000}, "result": "ok", "domains": [{"cnames": ["api-user-cn3.zepp.com"], "host": "api-user.huami.com"}, {"cnames": ["api-mifit-cn3.zepp.com"], "host": "api-mifit.huami.com"}, {"cnames": ["app-analytics-cn3.zepp.com"], "host": "app-analytics.huami.com"}]}
+[2026-06-26 09:58:07]
+[1/2]账号：zsy****.com
+刷新app_token
+login_token可能失效，重新获取 last grant time: 1782437670615
+已设置为随机步数范围(12458~14458) 随机值:14297
+修改步数（14297）[success]
+
+grant_app_token: {"token_info": {"app_token": "ZQVBQFJyQktGHlp6QkpbRl5LRl5qek4uXAQABAAAAALAd5Un6hD-4zTt_6EYT4Yc_ue4i66tbMUH801onaDio2J5cN1bhqyLNzrsO5GDVsusUUpQ3KYaKn--uE6NDSN6C_8ZaX6umLMSQ-VSbakMv_Wmv_Z8ytwl8iv3dx1XWvAtjFSEN8rUMqgw4Wnzer863jyai2elZQ5RYzxpQSZUfXegwpmhNZECIy-AzDL6WoA", "user_id": "1198740178", "app_ttl": 2592000}, "result": "ok", "domains": [{"cnames": ["api-user-cn3.zepp.com"], "host": "api-user.huami.com"}, {"cnames": ["api-mifit-cn3.zepp.com"], "host": "api-mifit.huami.com"}, {"cnames": ["app-analytics-cn3.zepp.com"], "host": "app-analytics.huami.com"}]}
+[2026-06-26 09:58:15]
+[2/2]账号：sil****.com
+已设置为随机步数范围(12458~14458) 随机值:13612
+修改步数（13612）[success]
 
 
-执行账号总数1，成功：1，失败：0
+执行账号总数2，成功：2，失败：0
 未配置 PUSH_PLUS_TOKEN 跳过PUSHPLUS推送
 未配置 WECHAT_WEBHOOK_KEY 跳过微信推送
 未配置 TELEGRAM_BOT_TOKEN 或 TELEGRAM_CHAT_ID 跳过telegram推送
