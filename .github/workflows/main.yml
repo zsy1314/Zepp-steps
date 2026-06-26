@@ -16,6 +16,8 @@ jobs:
       # 步骤1：把你的代码拉取到云端
       - name: Checkout code
         uses: actions/checkout@v4
+        with: 
+         persist-credentials: false
 
       # 步骤2：在云端安装 Python 环境
       - name: Set up Python
