@@ -1,19 +1,21 @@
 多账号执行间隔：5.0
-grant_app_token: {"token_info": {"app_token": "ZQVBQFJyQktGHlp6QkpbRl5LRl5qek4uXAQABAAAAAH2DnMCl4dfzFRdoKDUiliiwzrm3HHEdvJ3BE7CgzfmIz0EdL4C5uA4m6OVMjeCgZte_idNfzeJeOgeNkl2wBAdeXTWUBo0sQGSeVJEDJm25q2B8XWIUtynm7Lc2VTnnqL3bkHkicK_fEodYJATJemgEzLEJuaYQ34qGmyh2jK22TF3sB7fbYlujF6yXZIyR3w", "user_id": "1198737087", "app_ttl": 2592000}, "result": "ok", "domains": [{"cnames": ["api-user-cn3.zepp.com"], "host": "api-user.huami.com"}, {"cnames": ["api-mifit-cn3.zepp.com"], "host": "api-mifit.huami.com"}, {"cnames": ["app-analytics-cn3.zepp.com"], "host": "app-analytics.huami.com"}]}
-[2026-06-26 10:12:48]
+grant_app_token: {"error_code": "0108", "mutime_long": 0, "mutime": "1970-01-01 00:00"}
+grant_app_token: {"token_info": {"app_token": "ZQVBQFJyQktGHlp6QkpbRl5LRl5qek4uXAQABAAAAALTuCU0KWJXJ-B7gkfOaQiRIZjsPjT0DGIDpdjCiqJNLA0h1TZlw-MQ0Im4FAnviUeD5N-5-34527cOuEixytgrkHsVLgel2S7anOiyxJFkNQrCQ073Hi7zxtCmISG65JBY_DB3hWCTdTVM8IjSW0EvRtag3aPNuHWXbHHQiOAtZ-YLujP_NhHwdiBT1ZoA7tQ", "user_id": "1198737087", "app_ttl": 2592000}, "result": "ok", "domains": [{"cnames": ["api-user-cn3.zepp.com"], "host": "api-user.huami.com"}, {"cnames": ["api-mifit-cn3.zepp.com"], "host": "api-mifit.huami.com"}, {"cnames": ["app-analytics-cn3.zepp.com"], "host": "app-analytics.huami.com"}]}
+[2026-06-26 12:20:05]
 [1/2]账号：zsy****.com
 刷新app_token
-已设置为随机步数范围(12750~14750) 随机值:13660
-修改步数（13660）[success]
+login_token可能失效，重新获取 last grant time: 1782439089528
+已设置为随机步数范围(15416~17416) 随机值:16752
+修改步数（16752）[success]
 
 grant_app_token: {"error_code": "0108", "mutime_long": 0, "mutime": "1970-01-01 00:00"}
-grant_app_token: {"token_info": {"app_token": "ZQVBQFJyQktGHlp6QkpbRl5LRl5qek4uXAQABAAAAAJRqzhFdxdysNPO8FF7lztTCpEhIx_ilwDOBJbF0G06SSNfuchqpDVdhxsXSZw7R7pin0LZeIJDmMUcJMWQnVox4phqb-oiB8eIp62BfQT-Iupm0zKlRnZcuS0FLKI40NV9LSSCA1zrhOnpnYp-gJdFCX9kucwITOpY9hvzsdhpBSuP7dCDSO19NrXLbuE8m3w", "user_id": "1198740178", "app_ttl": 2592000}, "result": "ok", "domains": [{"cnames": ["api-user-cn3.zepp.com"], "host": "api-user.huami.com"}, {"cnames": ["api-mifit-cn3.zepp.com"], "host": "api-mifit.huami.com"}, {"cnames": ["app-analytics-cn3.zepp.com"], "host": "app-analytics.huami.com"}]}
-[2026-06-26 10:12:54]
+grant_app_token: {"token_info": {"app_token": "ZQVBQFJyQktGHlp6QkpbRl5LRl5qek4uXAQABAAAAAITBcjZ6YjFBMxnkWHKFrILmhqbBo5d05Vz_xljeXUBozbWS3hQnSAd7mo_e9EnsfnD4tkw2DFyPMme4eRyApbpdE98X866jbZRROHE_RDC9DI_gJSVcqqN-tgciccYSF3xRcn4llZ0Pd91-hTze143XiRVVP9I_ztShAL1oLZA32RCbGtHy2hPuiLcoRP0Jng", "user_id": "1198740178", "app_ttl": 2592000}, "result": "ok", "domains": [{"cnames": ["api-user-cn3.zepp.com"], "host": "api-user.huami.com"}, {"cnames": ["api-mifit-cn3.zepp.com"], "host": "api-mifit.huami.com"}, {"cnames": ["app-analytics-cn3.zepp.com"], "host": "app-analytics.huami.com"}]}
+[2026-06-26 12:20:14]
 [2/2]账号：sil****.com
 刷新app_token
-login_token可能失效，重新获取 last grant time: 1782439097835
-已设置为随机步数范围(12750~14750) 随机值:13685
-修改步数（13685）[success]
+login_token可能失效，重新获取 last grant time: 1782439976784
+已设置为随机步数范围(15416~17416) 随机值:15634
+修改步数（15634）[success]
 
 
 执行账号总数2，成功：2，失败：0
