@@ -63,4 +63,6 @@ jobs:
           # 提交并推送（不包含 workflow 文件，避免 fine-grained token 权限报错）
           git add cron_change_time encrypted_tokens.data execution.log
           git diff --cached --quiet || git commit -m "chore: update execution log [skip ci]"
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote -v
           git push origin HEAD:${{ github.ref_name }}
